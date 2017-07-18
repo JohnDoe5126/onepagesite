@@ -1,0 +1,338 @@
+<html>
+<head>
+<meta charset="utf-8"/>
+<style>
+
+body{
+	background-color: #DD9999;
+}
+
+#main{
+	position:absolute;
+	background-color: #99CC99;
+	width:100%;
+	top:0;
+	left:0;
+}
+
+#header{
+	position: fixed;
+	top: 0px;
+	left:0;
+	width:100%;
+	height:10%;
+	margin:0px;
+	z-index:20;
+}
+
+#logo_div{
+	display: inline-block;
+	height: 50px;
+	width: 50px;
+	background-color: red;
+	float:left;
+}
+
+#top_nav{
+	display: inline-block;
+	float:right;
+}
+
+#top_nav > ul {
+	margin:0;
+	background-color: #000000;
+	list-style-type:none;
+	padding:0;
+}
+
+#top_nav > ul > a > .top_nav_el {
+	display: inline-block;
+	padding: 5px;
+	/*background-color: #55CCCC;*/
+	background-color: #000000;
+	font-size:20px;
+}
+
+#top_nav > ul > a > .top_nav_el:hover {
+	background-color: gray;
+}
+
+#content{
+}
+
+.page{	
+    position:relative;
+	top:0px;
+	width:100%;
+	height:100vh;
+}
+
+.page_in{
+	display:table-cell; 
+	width:100vw; 
+	height:100vh; 
+	vertical-align:middle;
+}
+
+.page_in>.page_text{
+	background-color:white;
+	width:50%;
+	height:50%;
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom:10px;
+	font-size:20px;
+	padding:10px;
+}
+
+a {
+	text-decoration:none;
+	color:#CCFFCC;
+}
+
+.button_frame{
+	margin-left:auto;
+	margin-right:auto;
+	width: 30%;
+}
+
+a > .button {
+	width:100%;
+	height: 5%;
+	min-height: 35px;
+	border: 10px solid gray;
+	background-color: #555555;
+	text-align:center;
+	font-size: 30px;
+	transition: all 0.1s ease-out 0s;
+	margin:5px;
+}
+
+a:hover > .button {
+	background-color: gray;
+	border:10px solid gray;
+	border-radius: 4px;
+}
+
+#page1{
+	background-color: #335544;	
+	background-image: url(1.jpg);
+	background-size: 100% 100%;
+}
+
+#page2{
+	background-color: #445533;
+	background-image: url(2.jpg);
+	background-size: 100% 100%;
+}
+
+#page3{
+	background-color: #553344;
+	background-image: url(3.jpg);
+	background-size: 100% 100%;
+}
+
+#footer{
+	width:100%;
+	height:10%;
+	background-color: #555533;	
+}
+
+#social{
+	width:50%;
+	min-height:50px;
+	float: left;
+}
+
+#bottom_nav{
+	margin-left:50%;
+	width:50%;
+	text-align: center;
+}
+
+#bottom_nav > ul{
+	margin:0;
+	list-style-type:none;
+	padding:0;
+	font-size: 14px;
+}
+
+#bottom_nav > ul > li {
+	margin:0;
+	width: 30%;
+	min-width: 150px;
+	margin-left: auto;
+	margin-right: auto;
+	list-style-type:none;
+	padding:5px;
+	font-size: 14px;
+	border-bottom: 1px solid #555533;
+}
+
+#bottom_nav > ul > li:hover {
+	background-color: gray;
+	border-bottom: 1px solid black;
+}
+
+#copyr{
+	clear: left;
+	background-color: gray;
+	text-align: center;
+}
+
+</style>
+<script>
+(function(){
+	function setListeners(){
+		/*buttons on pages*/
+		document.getElementsByClassName("button")[0].onclick = function(){
+			slowScroll(document.getElementById("page2").offsetTop);
+		}
+		document.getElementsByClassName("button")[1].onclick = function(){
+			slowScroll(document.getElementById("page3").offsetTop);
+		}
+		document.getElementsByClassName("button")[2].onclick = function(){
+			slowScroll(document.getElementById("page1").offsetTop);
+		}		
+		document.getElementsByClassName("button")[3].onclick = function(){
+			slowScroll(document.getElementById("page2").offsetTop);
+		}
+		/*top_menu links*/
+		document.getElementsByClassName("top_nav_el")[0].onclick = function(){
+			slowScroll(document.getElementById("page1").offsetTop);
+		};
+		document.getElementsByClassName("top_nav_el")[1].onclick = function(){
+			slowScroll(document.getElementById("page2").offsetTop);
+		};
+		document.getElementsByClassName("top_nav_el")[2].onclick = function(){
+			slowScroll(document.getElementById("page3").offsetTop);
+		};
+	}
+	
+	function scrl( toY , int1, step ){
+		var n = toY - window.scrollY;
+		if(n>step){
+			window.scrollBy(0,step); 
+		}
+		else if(n<-step){
+			window.scrollBy(0,-step);
+		}
+		else{ 
+			window.scrollTo(0,toY); 
+			clearInterval(int1); 
+		}
+	}
+	
+	function slowScroll(toY){		
+		var int1 = setInterval( function(){ scrl(toY, int1, 30);  }, 10);
+	}
+	
+	window.onload = function(){setListeners();};
+}
+)(window);
+</script>
+<title>Page</title>
+</head>
+<body>
+	<div id="main">
+		<div id="header">
+			<div id="logo_div">
+			</div>
+			<div id="top_nav">
+				<ul>
+				<a >				
+					<li class="top_nav_el">
+						Main
+					</li>
+				</a>
+				<a >
+					<li class="top_nav_el">
+						What is this?
+					</li>
+				</a>
+				<a >
+					<li class="top_nav_el">
+						Who am I?
+					</li>
+				</a>
+				</ul>
+			</div>
+		</div>
+		<div id="content">
+			<div id="page1" class="page">
+				<a name="first_page"></a>
+				<div class="page_in">
+					<div class="page_text">
+						Hello!
+					</div>
+					<div class="button_frame">
+						<a>
+							<div class="button">
+								What is this?
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div id="page2" class="page">
+				<a name="second_page"></a>
+				<div class="page_in">
+					<div class="page_text">
+						This is a mein test page.
+					</div>
+					<div class="button_frame">
+						<a >
+							<div class="button">
+								It's interesting...Let see					
+							</div>
+						</a>
+					</div>
+					<div class="button_frame">
+						<a >
+							<div class="button">
+								BACK!!!
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div id="page3" class="page">
+				<a name="third_page"></a>
+				<div class="page_in">
+					<div class="page_text">
+						I am a HUMAN. Probably.
+					</div>
+					<div class="button_frame">
+						<a >
+							<div class="button">
+								I don't understand
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="footer">
+			<div id="social">
+					
+			</div>
+			<div id="bottom_nav">
+				<ul>
+					<li class="bottom_nav_el">
+						Main
+					</li>
+					<li class="bottom_nav_el">
+						What is this?
+					</li>
+					<li class="bottom_nav_el">
+						Who am I?
+					</li>
+				</ul>
+			</div>
+			<div id="copyr">
+				© Nemo
+			</div>
+		</div>
+	</div>
+</body>
+</html>
